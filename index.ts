@@ -13,7 +13,7 @@ function firstFunction() {
 async function secondFunction() {
     console.log("Iniciou");
 
-    firstFunction();
+   await firstFunction();
 
     console.log("Terminou");
 }
