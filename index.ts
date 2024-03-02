@@ -1,22 +1,18 @@
-// conceitos de programação assíncrona
-console.log("Hello via Bun!");
-
-function firstFunction() {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            console.log("Esperou 1000 milessegundos");
-            resolve()
-        }, 1000);
-    });
+// Exemplo prático
+function getUser(id: number) {
+    return fetch(`https://reqres.in/api/users?id=${id}`)
+        .then(data => data.json())
+        .catch(err => console.log(err));
 }
 
-async function secondFunction() {
-    console.log("Iniciou");
-
-   await firstFunction();
-
-    console.log("Terminou");
+async function showName(id: number) {
+    try {
+        const user: any = await getUser(id);
+        console.log(`O nome do usuário é: ${user.data.first_name}`);
+    } catch(err) {
+        console.log(err);
+    }
 }
 
-secondFunction();
+showName(3);
 
